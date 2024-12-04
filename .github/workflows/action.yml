@@ -1,33 +1,34 @@
-on: ["push", "pull_request"]
-name: Test Coveralls Parallel
+name: action
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
 jobs:
   test:
-    strategy:
-      matrix:
-        test-name:
-          - test1
-          - test2
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-      - name: Test
-        run: ./run_tests.sh ${{ matrix.test-name }}
-      - name: Upload coverage data to coveralls.io
-        run: coveralls --service=github
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run tests with coverage
+        run: npm run test -- --coverage
+
+      - name: Upload coverage to Coveralls
+        run: |
+          cat ./coverage/lcov.info | npx coveralls
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          COVERALLS_FLAG_NAME: ${{ github-actions }}
-          COVERALLS_PARALLEL: true
-  coveralls:
-    name: Indicate completion to coveralls.io
-    needs: test
-    runs-on: ubuntu-latest
-    container: python:3-slim
-    steps:
-    - name: Finished
-      run: |
-        pip3 install --upgrade coveralls
-        coveralls --service=github --finish
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
