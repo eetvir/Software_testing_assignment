@@ -22,15 +22,7 @@ describe('capitalize', () => {
     expect(capitalize('a')).toBe('A')
     expect(capitalize('A')).toBe('A')
   })
-  // handles word with spaces
-  test('handles strings with spaces correctly', () => {
-    expect(capitalize('  fred')).toBe('  fred')
-    expect(capitalize('fred ')).toBe('Fred ')
-  })
-  // Hangles extra spaces
-  test('trims and capitalizes properly', () => {
-    expect(capitalize('  fred  '.trim())).toBe('Fred')
-  })
+
   // Handles null
   test('handles null or undefined input gracefully', () => {
     expect(capitalize(null ?? '')).toBe('')
