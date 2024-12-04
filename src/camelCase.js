@@ -26,6 +26,5 @@ const camelCase = (string) => (
     word = word.toLowerCase()
     return result + (index ? upperFirst(word) : word)
   }, ' ')
-)
 
 export default camelCase
