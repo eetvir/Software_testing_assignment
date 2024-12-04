@@ -1,40 +1,50 @@
-on: ["push", "pull_request"]
-
-name: Coveralls Parallel
+name: action
+on: [push, pull_request]
+env:
+  CI: true
 
 jobs:
   test:
-    runs-on: ubuntu-latest
+    name: Node ${{ matrix.node }} on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+
     strategy:
+      fail-fast: false
       matrix:
-        test_number:
-          - 1
-          - 2
+        node: [6, 8, 10, 12, 14]
+        os: [ubuntu-latest, windows-latest]
+
     steps:
-    - uses: actions/checkout@v4
-    - name: Use Node.js 16.x
-      uses: actions/setup-node@v3
-      with:
-        node-version: 16.x
+      - name: Clone repository
+        uses: actions/checkout@v2
 
-    - name: npm install
-      run: npm install
+      - name: Set Node.js version
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node }}
 
-    - name: Test ${{ matrix.test_number }}
-      run: make test-coverage-${{ matrix.test_number }}
-    - name: Coveralls Parallel
-      uses: coverallsapp/github-action@v2.3.4
-      with:
-        flag-name: run-${{ join(matrix.*, '-') }}
-        parallel: true
+      - name: Install npm dependencies
+        run: npm install # switch to `npm ci` when Node.js 6 support is dropped
+
+      - name: Run lint
+        run: npm run lint
+
+      - name: Run tests
+        run: npm run test-cov
+
+      - name: Coveralls
+        uses: coverallsapp/github-action@master
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          flag-name: ${{matrix.os}}-node-${{ matrix.node }}
+          parallel: true
 
   finish:
     needs: test
-    if: ${{ always() }}
     runs-on: ubuntu-latest
     steps:
-    - name: Coveralls Finished
-      uses: coverallsapp/github-action@v2.3.4
-      with:
-        parallel-finished: true
-        carryforward: "run-1,run-2"
+      - name: Coveralls Finished
+        uses: coverallsapp/github-action@master
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          parallel-finished: true
