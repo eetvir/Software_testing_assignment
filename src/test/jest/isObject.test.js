@@ -1,4 +1,4 @@
-import isObject from "../isObject.js"
+import isObject from "../../isObject.js"
 
 describe("isObject", () => {
     test("should return true for plain objects", () => {

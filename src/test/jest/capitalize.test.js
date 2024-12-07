@@ -1,4 +1,4 @@
-import capitalize from '../capitalize.js'
+import capitalize from '../../capitalize.js'
 
 describe('capitalize', () => {
   // Capitalize when whole word is uppercase

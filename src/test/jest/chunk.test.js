@@ -1,4 +1,4 @@
-import chunk from '../chunk.js';
+import chunk from '../../chunk.js';
 
 
 describe('chunk', () => {

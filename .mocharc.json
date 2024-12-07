@@ -1,0 +1,4 @@
+{
+  "spec": "src/test/mocha/**/*.js",
+  "recursive": true
+}

@@ -1,4 +1,4 @@
-import difference from "../difference"
+import difference from "../../difference"
 
 describe("difference", () => {
     it("should return difference between two arrays", () => {

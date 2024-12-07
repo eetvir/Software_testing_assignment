@@ -1,4 +1,4 @@
-import map from "../map"
+import map from "../../map"
 
 describe("map", () => {
     test("should handle empty array", () => {

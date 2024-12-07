@@ -1,4 +1,4 @@
-import reduce from "../reduce"
+import reduce from "../../reduce"
 
 describe("reduce", () => {
     test("should sum array of numbers with accumulator", () => {

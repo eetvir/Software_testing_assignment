@@ -1,4 +1,4 @@
-import filter from "../filter";
+import filter from "../../filter";
 
 describe("filter", () => {
     test("should return empty array when empty array is used as input", () => {

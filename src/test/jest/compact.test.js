@@ -1,4 +1,4 @@
-import compact from '../compact.js';
+import compact from '../../compact.js';
 
 describe('compact', () => {
   // removes false values from an array
