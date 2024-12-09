@@ -1,10 +1,11 @@
 import filter from "../filter";
 
 describe("filter", () => {
+    // Returns falsey [[]]
     test("should return empty array when empty array is used as input", () => {
         const array = []
         const predicate = (value) => value > 0
-        expect(filter(array, predicate)).toEqual([[]])
+        expect(filter(array, predicate)).toEqual([])
     })
     
     test("filter even numbers", () => {
@@ -13,10 +14,11 @@ describe("filter", () => {
         expect(filter(array, predicate)).toEqual([2, 4])
     })
 
+    // Returns falsey [[]]
     test("should return empty array if no elements match the predicate", () => {
         const array = [1, 3, 5]
         const predicate = (number) => number % 2 === 0
-        expect(filter(array, predicate)).toEqual([[]])
+        expect(filter(array, predicate)).toEqual([])
     })
 
     test("filter arrays with duplicate values", () => {
