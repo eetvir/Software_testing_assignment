@@ -15,9 +15,7 @@ Individuals who remove or modify the license file will also carry the consequenc
 ## How to run tests
 To run our unit tests and generate coverage report locally Node.js and npm are required.
 
-Node.js can be downloaded from [here](https://nodejs.org/en) and npm can be installed through command
-
-prompt using command:
+Node.js can be downloaded from [here](https://nodejs.org/en) and npm can be installed through command prompt using command:
 ```
 npm install
 ```
