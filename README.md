@@ -19,13 +19,13 @@ Node.js can be downloaded from [here](https://nodejs.org/en) and npm can be inst
 
 prompt using command:
 ```
-\npm install
+npm install
 ```
 
 Once the necessary components are installed, unit tests can be run using the following
 commands in the root folder:
 ```
-\npm test
+npm test
 
-\npm run test -- --coverage
+npm run test -- --coverage
 ```
