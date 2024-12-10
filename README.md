@@ -12,7 +12,7 @@ Source code folder contains a separate license file that must **NOT** be removed
 Removing this license file directly violates terms and conditions of the software under testing.
 Individuals who remove or modify the license file will also carry the consequences.
 
-##How to run tests
+###How to run tests
 To run our unit tests and generate coverage report locally Node.js and npm are required.
 
 Node.js can be downloaded from [here](https://nodejs.org/en) and npm can be installed through command
